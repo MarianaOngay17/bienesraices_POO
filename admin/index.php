@@ -1,11 +1,8 @@
 <?php 
 require '../includes/funciones.php';
 
-$auth = estaAutenticado();
+estaAutenticado();
 
-if(!$auth){
-    header("Location: /");
-}
 
 //conexion
 require '../includes/config/database.php';

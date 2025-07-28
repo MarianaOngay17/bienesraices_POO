@@ -1,5 +1,5 @@
 <?php 
-
+require 'includes/app.php';
 //validar url por id valido
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -8,8 +8,6 @@ if(!$id){
     header('Location: /admin');
 }
 
-//base de datos
-require 'includes/config/database.php';
 $db = conectarDB();
 
 //consulta datos propiedad
@@ -24,7 +22,7 @@ if(!$resultadoPropiedad->num_rows ){
 $propiedad = mysqli_fetch_assoc($resultadoPropiedad);
 
 
-require 'includes/funciones.php';
+
 incluirTemplate('header');
 ?>
     <main class="contenedor seccion contenido-centrado">

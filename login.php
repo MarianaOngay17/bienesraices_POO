@@ -1,7 +1,7 @@
 <?php 
 //autenticar usuario
+require 'includes/app.php';
 
-require 'includes/config/database.php';
 $db = conectarDB();
 
 $errores = [];
@@ -46,7 +46,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 } 
 
 //header
-require 'includes/funciones.php';
 incluirTemplate('header');
 ?>
     <main class="contenedor seccion contenido-centrado">
