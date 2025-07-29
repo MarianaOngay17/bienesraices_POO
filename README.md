@@ -5,22 +5,21 @@ Proyecto Bienes Raíces POO - Curso Desarrollo Web
 npm i - para instalar node modules
 
 composer init - para instalar composer
-{
-    "name": "m-ongay/bienesraices_poo",
-    "description": "Creando un proyecto con POO",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Mariana",
-            "email": "marianaongay.01@gmail.com"
-        }
-    ],
-    "require": {},
+
+agregar al composer.json
+
     "autoload": {
         "psr-4": {
             "App\\" : "./classes"
         }
     }
-}
+
 
 composer update
+
+Intervention image
+composer require intervention/image --para agregar intervention image al composer.json
+
+ "require": {
+        "intervention/image": "^3.11"
+    },
