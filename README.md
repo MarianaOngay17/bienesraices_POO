@@ -18,8 +18,9 @@ agregar al composer.json
 composer update
 
 Intervention image
+
 composer require intervention/image --para agregar intervention image al composer.json
 
- "require": {
+    "require": {
         "intervention/image": "^3.11"
     },
