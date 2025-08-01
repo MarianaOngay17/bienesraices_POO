@@ -25,13 +25,13 @@ $errores = Propiedad::getErrores();
 //enviar formulario
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    $propiedad = new Propiedad($_POST);
+    $propiedad = new Propiedad($_POST['propiedad']);
     
     //generar nombre imagen
     $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-    if($_FILES['imagen']['tmp_name']){
+    if($_FILES['propiedad']['tmp_name']['imagen']){
         $manager = new Image(Driver::class);
-        $imagen = $manager->read($_FILES['imagen']['tmp_name'])->cover(800, 600);
+        $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800, 600);
         $propiedad->setImagen($nombreImagen);
     }
 
