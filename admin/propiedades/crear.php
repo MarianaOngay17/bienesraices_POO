@@ -48,10 +48,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         $imagen->save(CARPETA_IMAGENES . $nombreImagen);
 
-        $resultado = $propiedad->guardar();
-        if($resultado){
-            header("Location: /admin?resultado=1");
-        }
+        $propiedad->guardar();
+        
     }
 
 }

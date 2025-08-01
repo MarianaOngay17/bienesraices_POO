@@ -30,7 +30,7 @@ class Propiedad {
 
     public function __construct($args = [])
     {
-        $this->id = $args['id'] ?? '';
+        $this->id = $args['id'] ?? null;
         $this->titulo = $args['titulo'] ?? '';
         $this->precio = $args['precio'] ?? '';
         $this->imagen = $args['imagen'] ?? '';
@@ -43,7 +43,7 @@ class Propiedad {
     }
 
     public function guardar(){
-        if(isset($this->id)){
+        if(!is_null($this->id)){
             //actualizar
             $this->actualizar();
         }else{
@@ -64,7 +64,9 @@ class Propiedad {
 
         $resultado = self::$db->query($query);
 
-        return $resultado;
+        if($resultado){
+            header("Location: /admin?resultado=1");
+        }
 
     }
 
@@ -82,10 +84,22 @@ class Propiedad {
         $query .= " LIMIT 1; ";
 
        $resultado = self::$db->query($query);
-       
+
         if($resultado){
             header("Location: /admin?resultado=2");
         }
+    }
+
+    public function eliminar(){
+        $query = "DELETE FROM propiedades WHERE id = ".  self::$db->escape_string($this->id) . " LIMIT 1 ;";
+
+        $resultado = self::$db->query($query);
+
+        if($resultado){
+            $this->borrarImagen();
+            header("Location: /admin?resultado=2");
+        }
+
     }
 
     public function atributos(){
@@ -152,18 +166,22 @@ class Propiedad {
 
     public function setImagen($imagen){
         //elimina imagen previa
-        if(isset($this->id)){
+        if(!is_null($this->id)){
             //validar si existe archivo
-            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-            
-            if($existeArchivo){
-                unlink(CARPETA_IMAGENES . $this->imagen);
-            }
+           $this->borrarImagen();
             
         }
 
         if($imagen){
             $this->imagen = $imagen;
+        }
+    }
+
+    public function borrarImagen(){
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+            
+        if($existeArchivo){
+            unlink(CARPETA_IMAGENES . $this->imagen);
         }
     }
 

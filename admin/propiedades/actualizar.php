@@ -53,7 +53,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     if(empty($errores)) {
-        $imagen->save(CARPETA_IMAGENES . $nombreImagen);
+        if($_FILES['propiedad']['tmp_name']['imagen']) {
+            $imagen->save(CARPETA_IMAGENES . $nombreImagen);
+        }
+
 
         $propiedad->guardar();
     }
