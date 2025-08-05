@@ -1,5 +1,5 @@
 <?php 
-require 'includes/app.php';
+require '../includes/app.php';
 incluirTemplate('header');
 ?>
     <main class="contenedor">

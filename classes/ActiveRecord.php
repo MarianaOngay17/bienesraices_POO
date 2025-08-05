@@ -22,9 +22,10 @@ class ActiveRecord {
     public static function getErrores() {
         return static::$errores;
     }
-    public function validar() {
+
+    public function validar(){
         static::$errores = [];
-        return static::$errores;
+        return  static::$errores;
     }
 
     // Registros - CRUD

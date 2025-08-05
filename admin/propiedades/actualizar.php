@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager as Image;
 
@@ -16,17 +17,13 @@ if(!$id){
     header('Location: /admin');
 }
 
-//base de datos
-$db = conectarDB();
+
 
 //consulta datos propiedad
-
 $propiedad = Propiedad::find($id);
 
 //consulta vendedores
-
-$consulta = "SELECT * FROM vendedores";
-$resultado = mysqli_query($db, $consulta);
+$vendedores = Vendedor::all();
 
 //mensajes de errores
 
@@ -56,8 +53,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         if($_FILES['propiedad']['tmp_name']['imagen']) {
             $imagen->save(CARPETA_IMAGENES . $nombreImagen);
         }
-
-
         $propiedad->guardar();
     }
 
